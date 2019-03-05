@@ -12,5 +12,12 @@
         resource_group: playground
         name: starterappstorage
         type: Standard_LRS
+    - name: create function app
+      azure_rm_functionapp:
+        resource_group: playground
+        storage_account: starterappstorage
+        name: starterfunctionapp
+        app_settings:
+          FUNCTIONS_WORKER_RUNTIME: dotnet
     - debug:
         var: rg 
