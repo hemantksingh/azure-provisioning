@@ -11,9 +11,6 @@ RUN pip install ansible[azure]
 RUN mkdir ~/.azure
 
 WORKDIR /app
-COPY callback_plugins/*.py /app/callback_plugins/
-COPY playbook.yml /app
-COPY ansible.cfg /app
-COPY deploy.sh /app
+COPY . /app
 
 ENTRYPOINT ["ansible-playbook", "playbook.yml"]
