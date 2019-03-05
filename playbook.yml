@@ -1,22 +1,26 @@
 ---
 - hosts: localhost
   connection: local
+  vars_files:
+    - "group_vars/all.yml"
+    - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
+
   tasks:
     - name: create resource group
       azure_rm_resourcegroup:
-        name: playground
-        location: westeurope
+        name: "{{ functions.resource_group }}"
+        location: "{{ functions.location }}"
       register: rg
     - name: create storage account
       azure_rm_storageaccount:
-        resource_group: playground
-        name: starterappstorage
+        resource_group: "{{ functions.resource_group }}"
+        name: "{{ functions.storage_account }}"
         type: Standard_LRS
     - name: create function app
       azure_rm_functionapp:
-        resource_group: playground
-        storage_account: starterappstorage
-        name: starterfunctionapp
+        resource_group: "{{ functions.resource_group }}"
+        storage_account: "{{ functions.storage_account }}"
+        name: "{{ functions.app_name }}"
         app_settings:
           FUNCTIONS_WORKER_RUNTIME: dotnet
     - name: deploy function
