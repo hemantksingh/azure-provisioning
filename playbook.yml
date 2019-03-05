@@ -7,6 +7,10 @@
         name: playground
         location: westeurope
       register: rg
-    
+    - name: create storage account
+      azure_rm_storageaccount:
+        resource_group: playground
+        name: starterappstorage
+        type: Standard_LRS
     - debug:
         var: rg 
