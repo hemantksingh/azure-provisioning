@@ -5,7 +5,8 @@
     - name: Create resource group
       azure_rm_resourcegroup:
         name: playground
-        location: westeu
+        location: westeurope
       register: rg
+    
     - debug:
         var: rg 
