@@ -2,7 +2,6 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - "group_vars/all.yml"
     - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
 
   tasks:
