@@ -24,5 +24,8 @@
           FUNCTIONS_WORKER_RUNTIME: dotnet
     - name: deploy function
       script: deploy.sh
+      tags:
+        - deploy
     - debug:
-        var: rg 
+        var: rg
+      
