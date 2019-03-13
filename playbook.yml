@@ -22,10 +22,13 @@
         name: "{{ functions.app_name }}"
         app_settings:
           FUNCTIONS_WORKER_RUNTIME: dotnet
-    - name: deploy function
+    - name: deploy function app
       script: deploy.sh
+      environment:
+        ARTEFACT: "Kalibrate.Pricing.Functions"
+        RESOURCE_GROUP: "{{ functions.resource_group }}"
+        APP_NAME: "{{ functions.app_name }} "
       tags:
         - deploy
     - debug:
         var: rg
-      
