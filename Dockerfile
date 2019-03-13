@@ -21,4 +21,6 @@ RUN mkdir -p ~/.azure
 WORKDIR /app
 COPY . /app
 
+RUN chmod +x *.sh
+
 ENTRYPOINT ["ansible-playbook", "playbook.yml"]
