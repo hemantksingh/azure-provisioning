@@ -1,5 +1,8 @@
+resource_group: playground
+location: westeurope
+webappplan:
+  name: lolcatplan
+  resource_group: planplayground
 functions:
-  resource_group: playground
-  location: westeurope
-  storage_account: starterappstorage
+  storage_account: lolcatappstorage
   app_name: lolfunctionapp
