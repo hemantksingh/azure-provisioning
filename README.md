@@ -32,8 +32,8 @@ make run
 
 ## Useful links
 
-* http://docs.ansible.com/ansible/latest/guide_azure.html 
-* https://docs.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#create-for-rbac
+* http://docs.ansible.com/ansible/latest/guide_azure.html
+* https://docs.microsoft.com/en-us/azure/ansible/ansible-create-configure-azure-web-apps
 
 Ansible best practice
 
