@@ -1,0 +1,19 @@
+---
+  - name: create a managed Azure Container Services (AKS) cluster
+    azure_rm_aks:
+      name: "{{ aks.name }}"
+      location: "{{ location }}"
+      resource_group: "{{ resource_group }}"
+      dns_prefix: "{{ aks.name }}"
+      linux_profile:
+        admin_username: "{{ aks.username }}"
+        ssh_key: "{{ aks.ssh_key }}"
+      service_principal:
+        client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
+        client_secret: "{{ lookup('env', 'AZURE_SECRET') }}"
+      agent_pool_profiles:
+        - name: default
+          count: 2
+          vm_size: Standard_D2_v2
+    tags:
+      - provision
