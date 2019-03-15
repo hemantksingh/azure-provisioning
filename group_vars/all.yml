@@ -1,5 +1,0 @@
-functions:
-  resource_group: playground
-  location: westeurope
-  storage_account: starterappstorage
-  app_name: starterfunctionapp

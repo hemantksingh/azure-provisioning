@@ -23,4 +23,4 @@ COPY . /app
 
 RUN chmod +x *.sh
 
-ENTRYPOINT ["ansible-playbook", "playbook.yml"]
+ENTRYPOINT ["ansible-playbook", "site.yml"]

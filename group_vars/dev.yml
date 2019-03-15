@@ -1,5 +1,3 @@
-resource_group: playground
-location: westeurope
 webappplan:
   name: lolcatplan
   resource_group: planplayground
