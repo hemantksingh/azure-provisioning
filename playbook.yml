@@ -4,34 +4,17 @@
   vars_files:
     - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
 
-  roles:
-    - webapp
-  
-  tasks:
+  pre_tasks:
     - name: create resource group
       azure_rm_resourcegroup:
         name: "{{ resource_group }}"
         location: "{{ location }}"
       register: rg
-    - name: create storage account
-      azure_rm_storageaccount:
-        resource_group: "{{ resource_group }}"
-        name: "{{ functions.storage_account }}"
-        type: Standard_LRS
-    - name: create function app
-      azure_rm_functionapp:
-        resource_group: "{{ resource_group }}"
-        storage_account: "{{ functions.storage_account }}"
-        name: "{{ functions.app_name }}"
-        app_settings:
-          FUNCTIONS_WORKER_RUNTIME: dotnet
-    - name: deploy function app
-      script: deploy.sh
-      environment:
-        ARTEFACT: "Kalibrate.Pricing.Functions"
-        RESOURCE_GROUP: "{{ resource_group }}"
-        APP_NAME: "{{ functions.app_name }} "
-      tags:
-        - deploy
     - debug:
         var: rg
+  
+  roles:
+    - webapp
+    - function
+  
+  
