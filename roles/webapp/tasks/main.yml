@@ -3,6 +3,7 @@
     azure_rm_resourcegroup:
       name: "{{ webappplan.resource_group }}"
       location: "{{ location }}"
+      
   - name: create a linux web app
     azure_rm_webapp:
       resource_group: "{{ resource_group }}"
