@@ -1,0 +1,20 @@
+---
+  - name: create webapp plan resource group
+    azure_rm_resourcegroup:
+      name: "{{ webappplan.resource_group }}"
+      location: "{{ location }}"
+  - name: create a linux web app
+    azure_rm_webapp:
+      resource_group: "{{ resource_group }}"
+      name: lolcatwebapp
+      plan:
+        resource_group: "{{ webappplan.resource_group }}"
+        name: "{{ webappplan.name}}"
+        sku: S1
+        is_linux: true
+        number_of_workers: 1
+      app_settings:
+        testkey: testvalue
+      frameworks:
+        - name: "dotnetcore"
+          version: "2.2"

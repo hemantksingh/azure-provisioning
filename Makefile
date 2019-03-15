@@ -10,7 +10,7 @@ build:
 	docker build -t $(IMAGE) .
 
 cleanup:
-	docker ps -aq -f name=$(CONTAINER) | grep -q . \
+	@docker ps -aq -f name=$(CONTAINER) | grep -q . \
 		&& docker rm -f $(CONTAINER) || echo No container to remove
 
 run: build cleanup
