@@ -1,0 +1,14 @@
+---
+  - name: create (or update) sql server
+    azure_rm_sqlserver:
+      resource_group: "{{ resource_group }}"
+      name: "{{ db.server}}"
+      location: "{{ location }}"
+      admin_username: mylogin
+      admin_password: Testpasswordxyz12!
+  - name: create (or update) sql database
+    azure_rm_sqldatabase:
+      resource_group: "{{ resource_group }}"
+      server_name: "{{ db.server }}"
+      name: "{{ db.name}}"
+      location: "{{ location }}"

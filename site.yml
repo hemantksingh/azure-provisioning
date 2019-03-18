@@ -16,6 +16,7 @@
         var: rg
   
   roles:
+    - db
     - aks
     - webapp
     - function
