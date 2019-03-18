@@ -20,9 +20,9 @@
         var: rg
   
   roles:
-    - db
-    - aks
-    - webapp
+    # - db
+    # - aks
+    # - webapp
     - function
   
   

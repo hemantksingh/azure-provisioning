@@ -25,5 +25,8 @@
       ARTEFACT: "Kalibrate.Pricing.Functions" 
       RESOURCE_GROUP: "{{ resource_group }}"
       APP_NAME: "{{ functions.app_name }} "
+    register: deploy
     tags:
       - deploy
+  - debug:
+      msg: "{{ deploy }}"
