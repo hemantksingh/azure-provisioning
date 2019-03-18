@@ -7,6 +7,10 @@
     - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
 
   pre_tasks:
+    - name: login with azure cli
+      script: azlogin.sh
+      register: login
+    
     - name: create resource group
       azure_rm_resourcegroup:
         name: "{{ resource_group }}"
