@@ -1,7 +1,13 @@
  #!/bin/bash -e
 
- # -e: exit right away on an error
- # $?: get the exit status of the last command, exit status 0 -> success
+#
+# Neel - The Azure CLI Warpper
+#
+# (c) 2019 @_hemantksingh
+#
+
+# -e: exit right away on an error
+# $?: get the exit status of the last command, exit status 0 -> success
 
 az_login() {
     if [[ -z "$AZURE_CLIENT_ID" ]] && [[ -z "$AZURE_SECRET"  ]] && [[ -z "$AZURE_TENANT" ]] ; then
@@ -14,7 +20,8 @@ az_login() {
     fi  
 }
 
-servicebus_createnamespace() {
+# TODO: Only create if doesn't exist
+sb_createnamespace() {
     namespace=$1; res_group=$2; 
     
     az servicebus namespace create \
@@ -22,8 +29,8 @@ servicebus_createnamespace() {
         --resource-group $res_group
 }
 
-servicebus_authrule() {
-    res_group=$1; namespace=$2; auth_rule=$3
+sb_getauthrule_constring() {
+    namespace=$1; res_group=$2; auth_rule=$3
 
     az servicebus namespace authorization-rule keys list  \
         --resource-group $res_group \

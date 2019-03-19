@@ -8,7 +8,7 @@
 
   pre_tasks:
     - name: login with azure cli
-      shell: . ./neela.sh && az_login
+      shell: . ./neel.sh && az_login
       register: login
     
     - name: create resource group
