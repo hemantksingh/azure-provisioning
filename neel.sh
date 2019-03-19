@@ -20,11 +20,21 @@ az_login() {
     fi  
 }
 
+storage_get_accesskey() {
+    acc_name=$1; res_group=$2; key_index=${3:-0}
+
+    az storage account keys list \
+        --account-name $acc_name \
+        --resource-group $res_group \
+        --query "[$key_index].value" \
+        --output tsv
+}
+
 sql_getdb_constring() {
     dbserver=$1; dbname=$2 client=${3:-ado.net}
     
     az sql db show-connection-string \
-        -s $dbserver -n $dbname -c $client | \
+        -s $dbserver -n $dbname -c $client --output tsv | \
         sed -e "s/<username>/$AZURE_SQLSERVER_USERNAME/g" \
             -e "s/<password>/$AZURE_SQLSERVER_PASSWORD/g"
 }
