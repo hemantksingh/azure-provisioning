@@ -14,12 +14,20 @@ az_login() {
     fi  
 }
 
+servicebus_createnamespace() {
+    namespace=$1; res_group=$2; 
+    
+    az servicebus namespace create --name $namespace --resource-group $res_group
+
+    servicebus_authrule $res_group $namespace RootManageSharedAccessKey
+}
+
 servicebus_authrule() {
     res_group=$1; namespace=$2; auth_rule=$3
 
-    echo az servicebus namespace authorization-rule keys list  \
-        -g $res_group \
+    az servicebus namespace authorization-rule keys list  \
+        --resource-group $res_group \
         --namespace-name $namespace \
-        --name $auth_rule | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['primaryConnectionString'])"
+        --name $auth_rule \
+        | jq -r '.primaryConnectionString'
 }

@@ -1,0 +1,6 @@
+---
+  - name: create service bus namespace
+    shell: . ./neela.sh && servicebus_createnamespace {{ servicebus.namespace }} {{ resource_group }}
+    register: connection_string
+  - debug:
+        msg: "{{ connection_string }}"  

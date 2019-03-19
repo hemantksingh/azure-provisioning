@@ -15,4 +15,7 @@ db:
   name: lolcatdb
   server: lolcatdbserver
 
+servicebus:
+    namespace: lolcatbus
+
 

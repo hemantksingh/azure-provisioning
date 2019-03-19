@@ -20,6 +20,7 @@
         var: rg
   
   roles:
+    - servicebus
     - db
     - aks
     - webapp
