@@ -1,6 +1,11 @@
 ---
   - name: create service bus namespace
     shell: . ./neela.sh && servicebus_createnamespace {{ servicebus.namespace }} {{ resource_group }}
-    register: connection_string
+
+  - name: get service bus connection string
+    shell: . ./neela.sh && servicebus_authrule {{ resource_group }} {{ servicebus.namespace }} RootManageSharedAccessKey
+    register: command_output
+  - set_fact:
+      sb_connection_string: "{{ command_output.stdout }}"
   - debug:
-        msg: "{{ connection_string }}"  
+        msg: "{{ command_output.stdout }}"

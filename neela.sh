@@ -17,9 +17,9 @@ az_login() {
 servicebus_createnamespace() {
     namespace=$1; res_group=$2; 
     
-    az servicebus namespace create --name $namespace --resource-group $res_group
-
-    servicebus_authrule $res_group $namespace RootManageSharedAccessKey
+    az servicebus namespace create \
+        --name $namespace \
+        --resource-group $res_group
 }
 
 servicebus_authrule() {
