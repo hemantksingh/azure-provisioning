@@ -16,6 +16,7 @@
         number_of_workers: 1
       app_settings:
         sb_connection_string: "{{ sb_connection_string }}"
+        db_connection_string: "{{ db_connection_string }}"
       frameworks:
         - name: "dotnetcore"
           version: "2.2"

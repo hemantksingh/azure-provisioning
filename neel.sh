@@ -20,6 +20,15 @@ az_login() {
     fi  
 }
 
+sql_getdb_constring() {
+    dbserver=$1; dbname=$2 client=${3:-ado.net}
+    
+    az sql db show-connection-string \
+        -s $dbserver -n $dbname -c $client | \
+        sed -e "s/<username>/$AZURE_SQLSERVER_USERNAME/g" \
+            -e "s/<password>/$AZURE_SQLSERVER_PASSWORD/g"
+}
+
 # TODO: Only create if doesn't exist
 sb_createnamespace() {
     namespace=$1; res_group=$2; 

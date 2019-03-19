@@ -4,11 +4,21 @@
       resource_group: "{{ resource_group }}"
       name: "{{ db.server}}"
       location: "{{ location }}"
-      admin_username: mylogin
-      admin_password: Testpasswordxyz12!
+      admin_username: "{{ lookup('env', 'AZURE_SQLSERVER_USERNAME') }}"
+      admin_password: "{{ lookup('env', 'AZURE_SQLSERVER_PASSWORD') }}"
+      
   - name: create (or update) sql database
     azure_rm_sqldatabase:
       resource_group: "{{ resource_group }}"
       server_name: "{{ db.server }}"
       name: "{{ db.name}}"
       location: "{{ location }}"
+  
+  # Gets db connection string and registers the ansible o/p of the shell
+  # execution. Ansible o/p is json with stdout element containing the result
+  # of the command  
+  - name: get db connection string
+    shell: . ./neel.sh && sql_getdb_constring {{ db.server }} {{ db.name }}
+    register: cmd_output
+  - set_fact:
+      db_connection_string: "{{ cmd_output.stdout }}"
