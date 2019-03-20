@@ -30,6 +30,13 @@ storage_get_accesskey() {
         --output tsv
 }
 
+storage_get_constring() {
+    acc_name=$1; res_group=$2;
+
+    az storage account show-connection-string \
+        -g $res_group -n $acc_name | jq -r '.connectionString'
+}
+
 sql_getdb_constring() {
     dbserver=$1; dbname=$2 client=${3:-ado.net}
     
