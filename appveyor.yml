@@ -1,0 +1,5 @@
+image:
+- Docker 18.09.0
+
+build_script:
+  - cmd: make build
