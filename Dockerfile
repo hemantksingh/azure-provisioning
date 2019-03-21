@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL maintainer="Hemant Kumar <me@hemantkumar.net>"
+LABEL maintainer="Kalibrate Technologies"
 
 ## Install pre-requisite packages
 RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev python-pip
@@ -23,4 +23,4 @@ COPY . /app
 
 RUN chmod +x *.sh
 
-ENTRYPOINT ["ansible-playbook", "site.yml"]
+ENTRYPOINT ["ansible-playbook"]

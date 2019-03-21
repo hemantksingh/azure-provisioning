@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+
+  vars_files:
+    - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
+
+  tasks:
+    - name: login with azure cli
+      shell: . ./neel.sh && az_login
+      register: login
+    - debug:
+        msg: "{{ login }}"
+  
+    - name: deploy function app
+      script: deploy.sh
+      environment:
+        ARTEFACT: "Kalibrate.Pricing.Functions" 
+        RESOURCE_GROUP: "{{ resource_group }}"
+        APP_NAME: "{{ functions.app_name }} "
+      register: deploy
+      tags:
+        - deploy
+    - debug:
+        msg: "{{ deploy }}"
+    
+    - name: deploy web app
+      debug:
+        msg: "TODO: Coming soon!"

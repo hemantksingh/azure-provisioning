@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - "group_vars/{{ lookup('env', 'TARGET_ENV') }}.yml"
+
+  pre_tasks:
+    - name: login with azure cli
+      shell: . ./neel.sh && az_login
+      register: login
+    
+    - name: create resource group
+      azure_rm_resourcegroup:
+        name: "{{ resource_group }}"
+        location: "{{ location }}"
+      register: rg
+    - debug:
+        var: rg
+  
+  roles:
+    - servicebus
+    - db
+    - aks
+    - webapp
+    - function
+  
+  
