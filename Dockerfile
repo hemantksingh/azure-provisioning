@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL maintainer="Kalibrate Technologies"
+LABEL maintainer="Hemant Kumar <me@hemantkumar.net>"
 
 ## Install pre-requisite packages
 RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev python-pip

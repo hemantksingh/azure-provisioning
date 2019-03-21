@@ -1,5 +1,11 @@
 image:
-- Docker 18.09.0
+- ubuntu
+
+services:
+  - docker
+
+install:
+  - sh: sudo apt-get update
 
 build_script:
-  - cmd: make build
+- sh: make build

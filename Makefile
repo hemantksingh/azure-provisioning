@@ -1,6 +1,6 @@
 .PHONY: build run provision deploy
 
-IMAGE?=kalibrate/ansible
+IMAGE?=hemantksingh/ansible
 CONTAINER?=ansible
 TARGET_ENV?=dev
 APP_VERSION?=f9c11f55cd2943583b891b3e118d8797eb72097a
